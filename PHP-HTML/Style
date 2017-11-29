@@ -1,0 +1,64 @@
+body{
+    margin:0px;
+}
+#otsikko{
+    width: 95%;
+    height: 10%;
+    position: relative;
+    background:#236267;
+    text-align: left;
+    position: relative;
+    padding-left: 5%;
+    top:-0.5%;
+    margin:0px;
+    
+}
+h1{
+    font-size: 300%;
+    margin:0;
+    color:#003035;
+    
+}
+h2{
+    font-size: 100%;
+    margin:0;
+    color:#003035;
+    
+}
+#valikko{
+    width: 100.5%;
+    height: 5%;
+    position:relative;
+    left:-0.5%;
+    top:-0.5%;
+    text-align: center;
+    margin:0px;
+    background-color:#003035;
+}
+#nappi{
+    width: 18%;
+    height: 100%;
+background-color:#597D80;
+font-size:150%;
+margin-left:2%;
+margin-right:2%;
+position: relative;
+border:0;
+
+}
+#paaikkuna{
+    width: 100.5%;
+    height: 86%;
+    position: relative;
+    left:-0.5%;
+    top:-0.5%;
+    text-align: center;
+    font-size: 300%;
+    background-color:#95999A;
+    margin:0px;
+    
+}
+#kuva{
+    width: 50%;
+    height: 50%;
+}
