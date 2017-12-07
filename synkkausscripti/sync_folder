@@ -1,0 +1,34 @@
+import os
+import subprocess
+import time
+while 1:
+    os.chdir("/home/pi/Desktop/")
+    ping=subprocess.call("ping -c 2 139.59.149.168",shell=True)
+    if ping==0:
+        print("ping was succesful, synchronizing data to server")
+        print
+        try:
+            sisalto= os.listdir("kuvia")
+        except IndexError:
+            sisalto[0]=0;
+            pass
+        if len(sisalto):
+            print("synchronizing")
+            print
+            y="sshpass -p puliukko scp -r kuvia/* ledipoika@139.59.149.168:/var/www/html/images/"
+            subprocess.call(y,shell=True)
+            time.sleep(5)
+            x=sisalto[0]
+            print("synchronized")
+            print
+            os.chdir("/home/pi/Desktop/kuvia/")
+            subprocess.call(["rm",x])
+        else:
+            print("The folder was empty or already synchronized")
+            print
+            time.sleep(5)
+    else:
+        print("couldn`t ping the server, trying again in 5 seconds")
+        print(".....................................................")
+        print
+        time.sleep(5)
