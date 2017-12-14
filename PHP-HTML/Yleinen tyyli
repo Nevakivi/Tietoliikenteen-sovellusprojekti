@@ -1,0 +1,125 @@
+body{
+    margin:0px;
+   overflow:hidden;
+    
+}
+    
+h1{
+    font-size: 5vw;
+    margin:0;
+    color:black;
+    
+}
+h2{
+    font-size: 10vw;
+    margin:0;
+    color:#333333;
+    
+}
+h3{
+    font-size: 4vw;
+    margin: 0;
+    color: #00ffff;
+}
+#valikko{
+    width: 100vw;
+    height: 10vh;
+    position:relative;
+    top:-0.5vh;
+    text-align: center;
+    margin:0px;
+    background-color:black;
+    background: -moz-radial-gradient(#555555,black); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#555555, black); /* Standard syntax */
+}
+#nappi{
+    width: 15vw;
+    height: 5vh;
+background-color:grey;
+background: -moz-radial-gradient(#555555,black); /* For Firefox 3.6 to 15 */
+background: radial-gradient( grey, #cccccc); /* Standard syntax */
+color:white;
+font-size:2vw;
+margin-left:2vw;
+margin-right:2vw;
+top:2.5vh;
+position: relative;
+border:0;
+
+}
+#paaikkuna{
+    width: 100vw;
+    height: 91vh;
+    position: relative;
+    top:-0.5vh;
+    text-align: center;
+    font-size: 2vw;
+    background-color:white;
+    margin:0px;
+    z-index: -1;
+}
+#paaikkuna2{
+    width: 60vw;
+    height: 80vh;
+    position: fixed;
+    top:-0.5vh;
+    text-align: center;
+    font-size: 2vw;
+    background-color:black;
+    margin:0px;
+}
+
+#kuva{
+    width: 40vw;
+    height: 40vh;
+}
+    
+#lomake{
+width: 10vw;
+height: 10vh;
+border: solid;
+border-width: 1px;
+background-color: #00ffff;
+z-index: 0;
+}
+#rekisteri{
+    font-size:4vh;
+    text-align:right;
+    width: 57.5vw;
+    padding-top: 5vh;
+    
+    
+}
+#username{
+    width: 20vw;
+    height: 4vh;
+    font-size: 4vh;
+    position:relative;
+    left:3vw;
+    
+}
+#password{
+    width: 20vw;
+    height: 4vh;
+    font-size: 4vh;
+    position:relative;
+    left:3vw;
+}
+#root{
+     width: 20vw;
+    height: 4vh;
+    font-size: 4vh;
+    position:relative;
+    left:3vw;
+}
+#napiska{
+    position: relative;
+    left:-5vw;
+    font-size:1vw;
+    
+}
+#ohjeet{
+    text-align:right;
+    width:60vw;
+    padding-top:10vh;
+}
