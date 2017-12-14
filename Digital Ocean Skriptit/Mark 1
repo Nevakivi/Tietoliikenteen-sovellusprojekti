@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import pymysql
+import os
+
+start_path = '/var/www/html/images' # current directory
+
+# Open database connection
+db = pymysql.connect("localhost","ledipoika","ledipojat","Projekti" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+for path,dirs,files in os.walk(start_path):
+    for filename in files:
+        fname = os.path.join(path,filename)
+        sql = "INSERT IGNORE INTO images(id,pvm,Polku) VALUES(NULL,NOW(),'%s')" %fname
+        print(sql)
+        cursor.execute(sql)
+
+db.commit()
+# disconnect from server
+db.close()
