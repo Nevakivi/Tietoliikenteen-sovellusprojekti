@@ -1,0 +1,49 @@
+<?php
+ 
+
+
+session_start();
+
+if((!isset( $_SESSION['admin_id']) || !isset($_SESSION['logged_in'])) && (!isset( $_SESSION['user_id']) || !isset($_SESSION['logged_in']))){
+    //User not logged in. Redirect them back to the login.php page.
+    header('Location: Login.php');
+    exit;
+}
+ 
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etusivu</title>  
+        <link rel="stylesheet" href="yleinen_tyyli.css">
+        <meta charset ="UTF-8">
+        <meta name="description" content="Käyttöliittymä rotanloukkuun">
+        <meta name="author" content="Joonas Mattila">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <body>
+        <div id="valikko">
+            
+            <form>
+            <input id="nappi" type="button" value="etusivu"
+                   onclick="window.location.href='/index.php'"/>
+            <input id="nappi" type="button" value="galleria"
+                   onclick="window.location.href='/gallery.php'"/>
+            <input id="nappi" type="button" value="Rekisteröinti"
+                   onclick="window.location.href='/register.php'"/>
+            <input id="nappi" type="button" value="Tietoa meistä"
+                   onclick="window.location.href='/infoa.php'"/>
+            <input id="nappi" type="button" value="Kirjaudu Ulos"
+                   onclick="window.location.href='/logout.php'"/>
+            </form>
+        </div>
+        <div id="paaikkuna">
+            <h2>Ein rattenkiller 2000</h2>
+            <div id="ebin">
+            <img id='kuva' src="/images/rotta.jpg">
+            </div>
+        </div>
+    </body>
+
+</html>
