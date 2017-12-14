@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+
+import pymysql
+import os
+
+  db=pymysql.connect("localhost","ledipoika","ledipojat","Projekti" )
+  cursor = db.cursor()
+
+
+    for root, dirs, files in os.walk("/var/www/html/images"):
+        for name in files:
+            fname = os.path.join(root, name)
+            try:
+                sql = u"INSERT INTO images(id,pvm,polku) VALUES(NULL,NOW(),'%s')" % fname
+                cursor.execute(sql)
+
+    db.commit()
+
+    cursor.execute("SELECT * FROM images")
+
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row[0].decode('utf-8'))
