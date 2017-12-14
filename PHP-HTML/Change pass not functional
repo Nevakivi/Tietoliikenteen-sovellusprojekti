@@ -1,0 +1,128 @@
+<?php
+ 
+require 'password.php';
+ 
+require 'connect.php';
+ 
+session_start();
+
+if((!isset( $_SESSION['admin_id']) || !isset($_SESSION['logged_in'])) && (!isset( $_SESSION['user_id']) || !isset($_SESSION['logged_in']))){
+    //User not logged in. Redirect them back to the login.php page.
+    header('Location: Login.php');
+    exit;
+}
+ 
+
+if(isset($_POST['register'])){
+    
+    
+    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+    $pass = !empty($_POST['password']) ? trim($_POST['password']) : null;
+    
+    
+    $sql = "SELECT COUNT(username) AS num FROM admin WHERE username = :username";
+    $stmt = $pdo->prepare($sql);
+    
+    
+    $stmt->bindValue(':username', $username);
+    
+   
+    $stmt->execute();
+    
+  
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+
+    if($row['num'] > 0){
+        die('That username already exists!');
+    }
+    
+
+    $passwordHash = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
+    
+    if($_POST['root'] === $MYSQL_PASSWORD){
+        
+    
+
+    $sql = "INSERT INTO admin (username, password) VALUES (:username, :password)";
+    $stmt = $pdo->prepare($sql);
+    
+
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $passwordHash);
+ 
+
+    $result = $stmt->execute();
+    
+
+    if($result){
+
+        echo 'Thank you for registering with our website as admin.';
+    }
+    
+    } elseif ($_POST['root'] == NULL){
+     
+     $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+     $stmt = $pdo->prepare($sql);
+
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $passwordHash);
+ 
+
+    $result = $stmt->execute();
+    
+
+    if($result){
+        echo 'Thank you for registering with our website as user.';
+    }   
+    }
+       
+ else {
+    die('Incorrect root password!');
+  }
+}
+ 
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
+        
+        <link rel="stylesheet" href="yleinen_tyyli.css">
+        <meta charset ="UTF-8">
+        <meta name="description" content="Käyttöliittymä rotanloukkuun">
+        <meta name="author" content="Joonas Mattila">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <body>
+        <div id="valikko">
+            
+            <form>
+            <input id="nappi" type="button" value="etusivu"
+                   onclick="window.location.href='/index.php'"/>
+            <input id="nappi" type="button" value="galleria"
+                   onclick="window.location.href='/gallery.php'"/>
+            <input id="nappi" type="button" value="Rekisteröinti"
+                   onclick="window.location.href='/register.php'"/>
+            <input id="nappi" type="button" value="Tietoa meistä"
+                   onclick="window.location.href='/infoa.php'"/>
+            <input id="nappi" type="button" value="Kirjaudu Ulos"
+                   onclick="window.location.href='/logout.php'"/>
+            </form>
+        </div>
+        <h1>Pass change</h1>
+        
+        <form action="register.php" method="post">
+            <label for="oldpass">Old Password</label>
+            <input type="password" id="oldpass" name="oldpass"><br>
+            <label for="newpass">New Password</label>
+            <input type="password" id="newpass" name="newpass"><br>
+            <label for="newpass1">New Password </label>
+            <input type="password" id="newpass1" name="newpass1"><br>
+            <label for="root">Root </label>
+            <input type="password" id="root" name="root"><br>
+            <input type="submit" name="register" value="Register"></button>
+        </form>
+    </body>
+</html>
